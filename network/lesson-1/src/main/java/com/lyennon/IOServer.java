@@ -15,18 +15,13 @@ public class IOServer {
                 try {
                     Socket socket = serverSocket.accept();
                     new Thread(()->{
-                        int i = 0;
                         while (true){
                             byte[] data = new byte[1024];
                             try {
                                 InputStream inputStream = socket.getInputStream();
                                 int len;
                                 while ((len = inputStream.read(data)) != -1){
-                                    i++;
                                     System.out.println(new String(data, 0, len));
-                                }
-                                if(i == 2){
-                                    socket.close();
                                 }
                             } catch (IOException e) {
                                 e.printStackTrace();
